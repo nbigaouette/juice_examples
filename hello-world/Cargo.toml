@@ -4,3 +4,8 @@ version = "0.1.0"
 authors = ["Nicolas Bigaouette <nbigaouette@gmail.com>"]
 
 [dependencies]
+juice = { version = "0.2.3", default-features = false }
+
+[features]
+default = ["native"]
+native  = ["juice/native"]
