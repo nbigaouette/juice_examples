@@ -1,0 +1,55 @@
+language: rust
+sudo: false
+
+cache: cargo
+
+rust:
+    - 1.28.0
+
+os:
+    - linux
+    - osx
+
+addons:
+    apt:
+        sources:
+            - sourceline: "ppa:ubuntu-toolchain-r/test"
+        packages:
+            - gcc-8
+            - g++-8
+            - libopenblas-base
+            - libopenblas-dev
+
+before_script:
+    - which capnp || echo "Capn Proto not (yet) installed."
+    - |
+        if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+            echo "Running on macOS!"
+            echo "Installing OpenBLAS and Capn Proto"
+            brew update
+            brew install openblas capnp
+            export PKG_CONFIG_PATH=/usr/local/opt/openblas/lib/pkgconfig
+        else
+            echo "Running on Linux!"
+            export COMPILER_NAME=gcc
+            export CXX=g++-8
+            export CC=gcc-8
+            export PATH="${PATH}:${TRAVIS_BUILD_DIR}/target/usr/bin"
+            if [[ `which capnp` ]]; then
+                echo "Capn Proto already installed."
+            else
+                echo "Installing Capn Proto from source."
+                curl -O https://capnproto.org/capnproto-c++-0.7.0.tar.gz
+                tar zxf capnproto-c++-0.7.0.tar.gz
+                cd capnproto-c++-0.7.0
+                ./configure --prefix=$TRAVIS_BUILD_DIR/target/usr
+                make -j6 check
+                make install
+            fi
+        fi
+    - which capnp
+    - uname -a
+
+script:
+    - cargo build -v
+    - cargo run -v
