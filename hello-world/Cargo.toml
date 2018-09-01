@@ -6,6 +6,9 @@ authors = ["Nicolas Bigaouette <nbigaouette@gmail.com>"]
 [dependencies]
 juice = { version = "0.2.3", default-features = false }
 
+[replace]
+"juice:0.2.3" = { path = "../juice/juice", default-features = false}
+
 [features]
 default = ["native"]
 native  = ["juice/native"]
