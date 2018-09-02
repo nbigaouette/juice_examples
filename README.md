@@ -1,6 +1,6 @@
 # Exploration of Juice
 
-[![Build Status](https://travis-ci.org/nbigaouette/juice_exploration.svg?branch=master)](https://travis-ci.org/nbigaouette/juice_exploration)
+[![Build Status](https://travis-ci.org/nbigaouette/juice_examples.svg?branch=master)](https://travis-ci.org/nbigaouette/juice_examples)
 
 This repo contains exploration code of [Juice](https://github.com/spearow/juice),
 _The Hacker's Machine Learning Engine_ (formerly known as leaf).
