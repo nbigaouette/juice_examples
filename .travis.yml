@@ -53,3 +53,4 @@ before_script:
 script:
     - cargo build -v
     - cargo run -v
+    - cargo test -v
