@@ -51,6 +51,7 @@ before_script:
     - uname -a
 
 script:
+    - cd hello-world
     - cargo build -v
     - cargo run -v
     - cargo test -v
