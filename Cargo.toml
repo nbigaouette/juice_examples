@@ -2,3 +2,6 @@
 members = [
     "hello-world"
 ]
+
+[replace]
+"juice:0.2.3" = { path = "./juice/juice", default-features = false}
