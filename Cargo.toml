@@ -2,3 +2,6 @@
 members = [
     "hello-world"
 ]
+
+[patch.crates-io]
+juice = { path = "./juice/juice", default-features = false}
